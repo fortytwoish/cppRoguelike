@@ -25,7 +25,7 @@ Map::Map(int width, int height) : width(width), height(height)
 	prevXDir = xDir;
 	prevYDir = yDir;
 
-	for (int i = 0; i < 20; i++)
+	for (int i = 0; i < 10; i++)
 	{
 		//Randomly determine new room type
 		rtype = 0;//y rand() % 2;// RoomType::COUNT;

@@ -21,7 +21,7 @@ int centerY = consoleHeight / 2;
 
 int main()
 {
-	TCODConsole::initRoot(consoleWidth, consoleHeight+5, "libtcod C++ tutorial", false);
+	TCODConsole::initRoot(consoleWidth, consoleHeight+5, "Roguelike C++", false);
 	TCODConsole::setKeyboardRepeat(50, 33);
 	player = new Actor(100, 100, '@', TCODColor::white);
 	actors.push(player);
@@ -43,6 +43,12 @@ int main()
 void update() {
 	TCOD_key_t key;
 	TCODSystem::checkForEvent(TCOD_EVENT_KEY_PRESS, &key, NULL);
+	switch (key.c)
+	{
+		case 'q':
+		case 'Q':
+			exit(0);
+	}
 	switch (key.vk) {
 	case TCODK_F1:
 	{
@@ -92,4 +98,6 @@ void render() {
 	}*/
 
 	TCODConsole::root->printEx(0, consoleHeight+1, TCOD_BKGND_NONE, TCOD_LEFT, "Player Coords: (%d,%d)", player->x, player->y);
+	TCODConsole::root->printEx(0, consoleHeight + 2, TCOD_BKGND_NONE, TCOD_LEFT, "F1 - Generate new Map");
+	TCODConsole::root->printEx(0, consoleHeight + 3, TCOD_BKGND_NONE, TCOD_LEFT, " Q - Quit");
 }
