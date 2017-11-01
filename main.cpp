@@ -3,6 +3,13 @@
 #include "Actor.h"
 #include "Map.h"
 
+//test
+
+#include "Coordinate.h"
+#include <vector>
+#include <algorithm>
+#include <iostream>
+
 // Hide the console window
 //#pragma comment(linker, "/SUBSYSTEM:windows /ENTRY:mainCRTStartup")
 
@@ -14,19 +21,21 @@ TCODList<Actor *> actors;
 Actor *player;
 Map *map;
 
-int consoleWidth = 80;
-int consoleHeight = 50;
+int consoleWidth = 120;
+int consoleHeight = 80;
 int centerX = consoleWidth / 2;
 int centerY = consoleHeight / 2;
-
+int seed = -1;
 int main()
 {
 	TCODConsole::initRoot(consoleWidth, consoleHeight+5, "Roguelike C++", false);
-	TCODConsole::setKeyboardRepeat(50, 33);
+	TCODSystem::forceFullscreenResolution(1366, 768);
+	TCODConsole::setFullscreen(true);
+	TCODConsole::setKeyboardRepeat(100, 33);
 	player = new Actor(100, 100, '@', TCODColor::white);
 	actors.push(player);
 	//actors.push(new Actor(60, 13, '@', TCODColor::yellow));
-	map = new Map(200, 200);
+	map = new Map(200, 200, seed);
 
 	while (!TCODConsole::isWindowClosed()) {
 		update();
@@ -53,27 +62,27 @@ void update() {
 	case TCODK_F1:
 	{
 		delete map;
-		map = new Map(200, 200);
+		map = new Map(200, 200, ++seed);
 		player->x = player->y = 100;
 		break;
 	}
 	case TCODK_UP:
-		if (!map->isWall(player->x, player->y - 1)) {
+		if (map->tileAt(coordinate(player->x, player->y - 1))->canWalk()) {
 			player->y--;
 		}
 		break;
 	case TCODK_DOWN:
-		if (!map->isWall(player->x, player->y + 1)) {
+		if (map->tileAt(coordinate(player->x, player->y + 1))->canWalk()) {
 			player->y++;
 		}
 		break;
 	case TCODK_LEFT:
-		if (!map->isWall(player->x - 1, player->y)) {
+		if (map->tileAt(coordinate(player->x - 1, player->y))->canWalk()) {
 			player->x--;
 		}
 		break;
 	case TCODK_RIGHT:
-		if (!map->isWall(player->x + 1, player->y)) {
+		if (map->tileAt(coordinate(player->x + 1, player->y))->canWalk()) {
 			player->x++;
 		}
 		break;
@@ -84,12 +93,12 @@ void update() {
 void render() {
 	TCODConsole::root->clear();
 	// draw the map
-	map->render(player->x - consoleWidth/2,		player->x + consoleWidth/2,
-				player->y - consoleHeight/2,	player->y + consoleHeight/2);
+	map->render(coordinate(player->x - consoleWidth/2, player->y - consoleHeight / 2),
+				coordinate(player->x + consoleWidth/2, player->y + consoleHeight / 2));
 
 	// draw the actor(s)
 	TCODConsole::root->setChar(consoleWidth / 2, consoleHeight / 2, '@');
-	TCODConsole::root->setCharForeground(consoleWidth / 2, consoleHeight / 2, TCODColor::black);
+	TCODConsole::root->setCharForeground(consoleWidth / 2, consoleHeight / 2, TCODColor::yellow);
 	
 	/*
 	for (Actor **iterator = actors.begin(); iterator != actors.end(); iterator++)
@@ -97,7 +106,7 @@ void render() {
 		(*iterator)->render();
 	}*/
 
-	TCODConsole::root->printEx(0, consoleHeight+1, TCOD_BKGND_NONE, TCOD_LEFT, "Player Coords: (%d,%d)", player->x, player->y);
+	TCODConsole::root->printEx(0, consoleHeight+1, TCOD_BKGND_NONE, TCOD_LEFT, "Player Coords: (%d,%d) | Seed: %d", player->x, player->y, seed);
 	TCODConsole::root->printEx(0, consoleHeight + 2, TCOD_BKGND_NONE, TCOD_LEFT, "F1 - Generate new Map");
 	TCODConsole::root->printEx(0, consoleHeight + 3, TCOD_BKGND_NONE, TCOD_LEFT, " Q - Quit");
 }

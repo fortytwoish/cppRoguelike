@@ -1,5 +1,6 @@
 #pragma once
 #include "libtcod.hpp"
+#include "Coordinate.h"
 class Actor
 {
 public:
@@ -9,5 +10,9 @@ public:
 
 	Actor(int x, int y, int ch, const TCODColor &col);
 	void render() const;
+	coordinate position() const
+	{
+		return coordinate(x, y);
+	}
 };
 
