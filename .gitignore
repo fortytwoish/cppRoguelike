@@ -24,8 +24,12 @@
 *.lai
 *.la
 *.a
+*.lib
 
 # Executables
 *.exe
 *.out
 *.app
+
+# Do NOT exclude the Libtcod dependencies
+!Libtcod/*
