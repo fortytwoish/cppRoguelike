@@ -1,3 +1,7 @@
-﻿  main.cpp
+﻿  RectangularRoom.cpp
+  Map.cpp
+  main.cpp
+  Actor.cpp
+  Generating Code...
   Project1.vcxproj -> C:\Users\marvi\Source\Repos\cppRoguelike\Debug\Project1.exe
   Project1.vcxproj -> C:\Users\marvi\Source\Repos\cppRoguelike\Debug\Project1.pdb (Partial PDB)

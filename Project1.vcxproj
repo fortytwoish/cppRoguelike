@@ -69,9 +69,9 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Users\marvi\Documents\libtcod-1.5.1-MSVC\libtcod-1.5.1\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\marvi\Documents\libtcod-1.5.1-MSVC\libtcod-1.5.1\lib;$(LibraryPath)</LibraryPath>
-    <SourcePath>C:\Users\marvi\Documents\libtcod-1.5.1-MSVC\libtcod-1.5.1\src;$(SourcePath)</SourcePath>
+    <IncludePath>.\Libtcod\include;$(IncludePath)</IncludePath>
+    <LibraryPath>.\Libtcod\lib;$(LibraryPath)</LibraryPath>
+    <SourcePath>.\Libtcod\src;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -81,7 +81,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>libtcod-VS.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\Users\marvi\Documents\libtcod-1.5.1-MSVC\libtcod-1.5.1\lib;C:\Users\marvi\Documents\libtcod-1.5.1-MSVC\libtcod-1.5.1;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>.\Lobtcod\lib;.\Libtcod;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
