@@ -27,6 +27,9 @@
     <ClCompile Include="RectangularRoom.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CircularRoom.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h">
@@ -35,13 +38,16 @@
     <ClInclude Include="Map.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Coordinate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="IRoom.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="RectangularRoom.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Coordinate.h">
+    <ClInclude Include="CircularRoom.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
